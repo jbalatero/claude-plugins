@@ -28,7 +28,13 @@ Automates the full target branch → main deployment pipeline. Run this command 
 
 ### Configuration
 
-Read the `## Git Workflow Config` section from CLAUDE.md for configuration. If not present, use defaults: target branch = `staging`. Optional config:
+Determine the target branch using this priority:
+1. Branch specified as argument to the command (e.g., `/deploy develop`)
+2. `targetBranch` from the `## Git Workflow Config` section in CLAUDE.md
+3. Falls back to `staging` if neither is provided
+
+Read the `## Git Workflow Config` section from CLAUDE.md for additional configuration. Optional config:
+- `targetBranch` — default target branch for deployments
 - `changelogPath` — if set, generates changelogs (e.g., `docs/changelogs/`)
 - `preDeployScript` — if set, runs before deploy (e.g., `./pre-deploy.sh`)
 - `planDocsPath` — if set, checks for plan docs to source changelog content
