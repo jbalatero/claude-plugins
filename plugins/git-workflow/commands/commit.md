@@ -17,7 +17,7 @@ allowed-tools:
 2.  Analyze diff for multiple logical changes
 3.  Suggest splitting if needed
 4.  Create commit with conventional format
-5.  Husky handles pre-commit hooks automatically
+5.  Pre-commit hooks run automatically
 
 ## Split Criteria
 
@@ -66,7 +66,7 @@ Breaking Changes
 
 ## Notes
 
-*   Husky handles pre-commit checks
+*   Pre-commit hooks handle checks
 *   Only commit staged files if any exist
 *   Analyze diff for splitting suggestions
 *   **NEVER add Claude signature to commits**
