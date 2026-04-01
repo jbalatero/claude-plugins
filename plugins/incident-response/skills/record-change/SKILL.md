@@ -16,7 +16,7 @@ Call `record_change` by extracting these fields from the user's message:
 | `event_type` | yes | `deploy`, `config_change`, `scaling`, `restart`, `db_migration`, `dns_change`, `infra`, `rollback` |
 | `service` | yes | The affected service name |
 | `description` | yes | What changed — use the user's words |
-| `source` | yes | Default to `manual` unless user specifies otherwise |
+| `source` | yes | `caprover_webhook`, `git_push`, `manual`, `docker_events` — default to `manual` |
 | `commit_sha` | no | Git commit hash if mentioned |
 | `image_tag` | no | Docker image tag if mentioned |
 | `actor` | no | Who triggered it if mentioned |

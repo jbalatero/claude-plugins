@@ -11,6 +11,7 @@ Requires the `incident-response` MCP server to be configured. This plugin provid
 | Skill | Description |
 |-------|-------------|
 | `investigate` | Route to appropriate MCP tool, synthesize structured incident reports |
+| `investigate-rum` | Trace frontend RUM errors/views/resources through the full stack |
 | `manage-incident` | Handle incident lifecycle: acknowledge, snooze, investigate, resolve |
 | `check-escalations` | Query open incidents past acknowledgement deadline |
 | `record-change` | Log infrastructure changes for future incident correlation |

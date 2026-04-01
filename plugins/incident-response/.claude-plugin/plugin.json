@@ -1,6 +1,6 @@
 {
   "name": "incident-response",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Incident investigation, lifecycle management, escalation tracking, and change logging via incident-response MCP server",
   "author": {
     "name": "jbalatero"
