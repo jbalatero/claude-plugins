@@ -1,0 +1,7 @@
+{
+  "name": "git-workflow",
+  "description": "Staging-based Git workflow with conventional commits, PR creation, squash merging, rebasing, and deployment",
+  "author": {
+    "name": "jbalatero"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "dev-process",
+  "description": "Development workflow guardrails: pre-implementation review, session retrospectives, codebase rule discovery, and GitHub Actions review",
+  "author": {
+    "name": "jbalatero"
+  }
+}

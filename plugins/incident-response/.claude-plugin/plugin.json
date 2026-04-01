@@ -1,0 +1,7 @@
+{
+  "name": "incident-response",
+  "description": "Incident investigation, lifecycle management, escalation tracking, and change logging via incident-response MCP server",
+  "author": {
+    "name": "jbalatero"
+  }
+}
