@@ -1,5 +1,5 @@
 ---
-description: "Creates well-formatted commits with conventional commit messages and emoji"
+description: "Creates well-formatted commits with conventional commit messages"
 allowed-tools:
   [
     "Bash(git add:*)",
@@ -16,7 +16,7 @@ allowed-tools:
 1.  Check staged files, commit only staged files if any exist
 2.  Analyze diff for multiple logical changes
 3.  Suggest splitting if needed
-4.  Create commit with emoji conventional format
+4.  Create commit with conventional format
 5.  Husky handles pre-commit hooks automatically
 
 ## Split Criteria
