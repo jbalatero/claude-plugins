@@ -1,7 +1,10 @@
 {
   "name": "git-workflow",
+  "version": "1.0.0",
   "description": "Staging-based Git workflow with conventional commits, PR creation, squash merging, rebasing, and deployment",
   "author": {
     "name": "jbalatero"
-  }
+  },
+  "repository": "https://github.com/jbalatero/claude-plugins",
+  "license": "MIT"
 }

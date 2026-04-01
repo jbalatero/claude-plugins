@@ -14,12 +14,22 @@ A collection of Claude Code plugins for development workflows, incident response
 
 ```bash
 # Register marketplace (one-time)
-claude plugin marketplace add jbalatero/claude-plugins
+/plugin marketplace add jbalatero/claude-plugins
 
 # Install individual plugins
-claude plugin add git-workflow@jbalatero
-claude plugin add incident-response@jbalatero
-claude plugin add dev-process@jbalatero
+/plugin install git-workflow@jbalatero
+/plugin install incident-response@jbalatero
+/plugin install dev-process@jbalatero
+```
+
+## Local Development
+
+```bash
+# Test a single plugin without installing
+claude --plugin-dir ~/Projects/claude-plugins/plugins/git-workflow
+
+# Or register the local directory as a marketplace
+/plugin marketplace add ~/Projects/claude-plugins
 ```
 
 ## Plugin Details

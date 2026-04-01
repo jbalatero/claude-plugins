@@ -1,7 +1,10 @@
 {
   "name": "dev-process",
+  "version": "1.0.0",
   "description": "Development workflow guardrails: pre-implementation review, session retrospectives, codebase rule discovery, and GitHub Actions review",
   "author": {
     "name": "jbalatero"
-  }
+  },
+  "repository": "https://github.com/jbalatero/claude-plugins",
+  "license": "MIT"
 }

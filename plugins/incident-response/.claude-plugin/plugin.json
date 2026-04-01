@@ -1,7 +1,10 @@
 {
   "name": "incident-response",
+  "version": "1.0.0",
   "description": "Incident investigation, lifecycle management, escalation tracking, and change logging via incident-response MCP server",
   "author": {
     "name": "jbalatero"
-  }
+  },
+  "repository": "https://github.com/jbalatero/claude-plugins",
+  "license": "MIT"
 }

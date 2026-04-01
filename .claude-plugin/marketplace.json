@@ -1,0 +1,23 @@
+{
+  "name": "jbalatero",
+  "owner": {
+    "name": "jbalatero"
+  },
+  "plugins": [
+    {
+      "name": "git-workflow",
+      "source": "./plugins/git-workflow",
+      "description": "Staging-based Git workflow with conventional commits, PR creation, squash merging, rebasing, and deployment"
+    },
+    {
+      "name": "incident-response",
+      "source": "./plugins/incident-response",
+      "description": "Incident investigation, lifecycle management, escalation tracking, and change logging via incident-response MCP server"
+    },
+    {
+      "name": "dev-process",
+      "source": "./plugins/dev-process",
+      "description": "Development workflow guardrails: pre-implementation review, session retrospectives, codebase rule discovery, and GitHub Actions review"
+    }
+  ]
+}
