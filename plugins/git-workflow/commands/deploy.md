@@ -59,7 +59,7 @@ Read the `## Git Workflow Config` section from CLAUDE.md for additional configur
     *   Glob `<changelogPath>/YYYY-MM-DD.*.md` for today's date to find existing files
     *   Next number = count of matches + 1, zero-padded to 3 digits (e.g., `.001`, `.002`, `.003`)
     *   Filename: `<changelogPath>/YYYY-MM-DD.NNN.md`
-*   Create the changelog file:
+*   Write the changelog file:
     *   `# Release YYYY-MM-DD.NNN`
     *   `> summary line` (under 200 chars, no double quotes) summarizing all PRs — plain language understandable by non-technical people
     *   Reference lines as additional `>` blockquotes after the summary, one per PR (if PR numbers available)
@@ -75,19 +75,23 @@ Read the `## Git Workflow Config` section from CLAUDE.md for additional configur
 ### 4. Commit
 
 *   Stage the changelog file (if generated) and any lockfile changes from pre-deploy
-*   Commit with message: `build: pre-deploy and changelog for YYYY-MM-DD.NNN release`
-*   If only lockfile changes (no changelog), use: `build: pre-deploy`
-*   If only changelog (no lockfile changes), use: `docs: add changelog for YYYY-MM-DD.NNN release`
+*   If both: commit with message `build: pre-deploy and changelog for YYYY-MM-DD.NNN release`
+*   If only lockfile changes: `build: pre-deploy`
+*   If only changelog: `docs: add changelog for YYYY-MM-DD.NNN release`
+*   Skip if there is nothing to commit
 
 ### 5. Rebase to Main
 
 *   `git checkout main`
 *   `git pull origin main`
 *   `git rebase <target>` (fast-forwards main to target tip, keeping linear history)
-*   `git push origin main`
 *   If rebase fails due to conflicts, abort the rebase, return to target branch, and report the issue
 
-### 6. Return to Target Branch
+### 6. Push Main
+
+*   `git push origin main`
+
+### 7. Return to Target Branch
 
 *   `git checkout <target>`
 *   Report success with a summary of what was deployed (PR numbers, changelog file path if applicable)
