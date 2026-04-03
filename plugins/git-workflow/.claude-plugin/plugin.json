@@ -1,6 +1,6 @@
 {
   "name": "git-workflow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Staging-based Git workflow with conventional commits, PR creation, squash merging, rebasing, and deployment",
   "author": {
     "name": "jbalatero"
