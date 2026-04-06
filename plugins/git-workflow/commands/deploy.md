@@ -38,6 +38,7 @@ Read the `## Git Workflow Config` section from CLAUDE.md for additional configur
 - `changelogPath` — if set, generates changelogs (e.g., `docs/changelogs/`)
 - `preDeployScript` — if set, runs before deploy (e.g., `./pre-deploy.sh`)
 - `planDocsPath` — if set, checks for plan docs to source changelog content
+- `rollbackInstructions` — if set, used as the content of the `## Rollback` section in the changelog
 
 ## Steps
 
@@ -64,7 +65,7 @@ Read the `## Git Workflow Config` section from CLAUDE.md for additional configur
     *   `> summary line` (under 200 chars, no double quotes) summarizing all PRs — plain language understandable by non-technical people
     *   Reference lines as additional `>` blockquotes after the summary, one per PR (if PR numbers available)
     *   One `## feat/fix(scope): Description (#NNN)` section per PR with overview, key changes, and notable decisions
-    *   Always add a `## Rollback` section at the end
+    *   Always add a `## Rollback` section at the end — if `rollbackInstructions` is configured in `## Git Workflow Config`, use that as the section content; otherwise write generic rollback steps based on the changes
 *   **Always generate a changelog** if there are code changes in the diff. Only skip if the diff contains exclusively non-functional changes.
 
 ### 3. Check for ENV Var Changes
