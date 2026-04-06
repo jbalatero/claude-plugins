@@ -67,12 +67,31 @@ Read the `## Git Workflow Config` section from CLAUDE.md for additional configur
     *   Always add a `## Rollback` section at the end
 *   **Always generate a changelog** if there are code changes in the diff. Only skip if the diff contains exclusively non-functional changes.
 
-### 3. Run Pre-Deploy (if preDeployScript configured)
+### 3. Check for ENV Var Changes
+
+*   Scan the diff (`git diff main..<target>`) for any changes to ENV var files or references. Look for:
+    *   Changes to `.env.example`, `.env.sample`, or similar template files
+    *   New, modified, or removed keys in any `.env*` file tracked in git
+    *   Code changes that add, rename, or remove references to environment variables (e.g., `process.env.NEW_VAR`, `ENV['NEW_VAR']`, `os.environ.get('NEW_VAR')`)
+*   If any ENV var changes are detected:
+    *   List each change clearly: added keys, removed keys, renamed keys
+    *   Display this message to the user:
+
+        > **Action required before deploy:**
+        > The following ENV var changes were detected. Please apply them to the live server before continuing:
+        > [list changes]
+        > Once done, reply "done" (or similar) to proceed with the deployment.
+
+    *   **Wait for the user to confirm** before continuing to the next step
+    *   Do not proceed automatically — this step requires explicit user confirmation
+*   If no ENV var changes are detected, continue to the next step without pausing
+
+### 4. Run Pre-Deploy (if preDeployScript configured)
 
 *   Execute the configured pre-deploy script
 *   If it fails, stop and report the error
 
-### 4. Commit
+### 5. Commit
 
 *   Stage the changelog file (if generated) and any lockfile changes from pre-deploy
 *   If both: commit with message `build: pre-deploy and changelog for YYYY-MM-DD.NNN release`
@@ -80,18 +99,18 @@ Read the `## Git Workflow Config` section from CLAUDE.md for additional configur
 *   If only changelog: `docs: add changelog for YYYY-MM-DD.NNN release`
 *   Skip if there is nothing to commit
 
-### 5. Rebase to Main
+### 6. Rebase to Main
 
 *   `git checkout main`
 *   `git pull origin main`
 *   `git rebase <target>` (fast-forwards main to target tip, keeping linear history)
 *   If rebase fails due to conflicts, abort the rebase, return to target branch, and report the issue
 
-### 6. Push Main
+### 7. Push Main
 
 *   `git push origin main`
 
-### 7. Return to Target Branch
+### 8. Return to Target Branch
 
 *   `git checkout <target>`
 *   Report success with a summary of what was deployed (PR numbers, changelog file path if applicable)
@@ -100,5 +119,5 @@ Read the `## Git Workflow Config` section from CLAUDE.md for additional configur
 
 *   Stop at the first failure and report clearly what went wrong
 *   Never force-push
-*   If step 5 fails, abort the rebase (`git rebase --abort`), checkout target branch, and report
+*   If step 6 fails, abort the rebase (`git rebase --abort`), checkout target branch, and report
 *   Always leave the repo in a clean state on the branch the user started from
