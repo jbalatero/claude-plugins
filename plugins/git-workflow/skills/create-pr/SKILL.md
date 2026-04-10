@@ -30,7 +30,6 @@ Read the `## Git Workflow Config` section from `CLAUDE.md` for configuration. If
 
 - Remote URL: !`git remote get-url origin`
 - Recent commits: !`git log --oneline -10`
-- Branch diff: !`git diff $(target_branch)...HEAD --stat` (use target branch from config)
 
 ## Title
 
