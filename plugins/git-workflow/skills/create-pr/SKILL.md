@@ -12,23 +12,25 @@ allowed-tools:
   - "Bash(git remote get-url:*)"
   - "Bash(gh pr:*)"
   - "Bash(glab mr:*)"
-  - "Bash(bun ${CLAUDE_PLUGIN_ROOT}/scripts/*:*)"
-  # workaround: inline skill execution includes syntax markers in the permission
-  # check pattern, breaking allowed-tools matching.
-  # https://github.com/bendrucker/claude/issues/486
-  - "Bash(!`bun ${CLAUDE_PLUGIN_ROOT}/scripts/*`:*)"
+  - "Bash(git log:*)"
+  - "Bash(git diff:*)"
+  - "Bash(git status:*)"
+  - "Read(CLAUDE.md)"
 ---
 
 # Create Pull Request
 
+## Configuration
+
+Read the `## Git Workflow Config` section from `CLAUDE.md` for configuration. If not present, use defaults:
+
+- **target branch**: `staging`
+
 ## Context
 
 - Remote URL: !`git remote get-url origin`
-- PR Template: !`bun ${CLAUDE_PLUGIN_ROOT}/scripts/pr-template.ts`
-
-!`bun ${CLAUDE_PLUGIN_ROOT}/scripts/git-context.ts`
-
-!`bun ${CLAUDE_PLUGIN_ROOT}/scripts/contributing.ts`
+- Recent commits: !`git log --oneline -10`
+- Branch diff: !`git diff $(target_branch)...HEAD --stat` (use target branch from config)
 
 ## Title
 
@@ -53,7 +55,7 @@ allowed-tools:
 
 ## Template
 
-When a PR template is provided in context above, follow its structure instead of the default body format:
+If a PR template exists at `.github/PULL_REQUEST_TEMPLATE.md` or `.github/pull_request_template.md`, read it and follow its structure instead of the default body format:
 
 - Preserve all template sections, even if some are left empty
 - Leave checklists (checkbox items) untouched for the user to complete manually
@@ -78,14 +80,15 @@ When an issue is referenced:
 
 ## Workflow
 
-1. **Branch validation**: If the context above shows you're on a default branch (main/master), stop and ask the user to switch to a feature branch first.
+1. **Read config**: Check `CLAUDE.md` for a `## Git Workflow Config` section and extract the target branch. Default to `staging` if not found.
+1. **Branch validation**: If currently on the target branch, stop and ask the user to switch to a feature branch first.
 1. Stage changes if not already staged: `git add .`
 1. Commit if there are no commits yet on the branch. Follow the same format for the commit message as for the pull request title (conventional or subject-oriented based on repo standard): `git commit -m "..."`
 1. Push the branch to remote: `git push -u origin HEAD`
 1. Create the PR/MR:
    - Write the body to a temp file first (e.g., `tmp/pr-body-<branch>.md`)
    - Include the branch name in the filename to avoid conflicts with concurrent agents
-   - **GitHub**: `gh pr create --title "..." --body-file tmp/pr-body-<branch>.md`
+   - **GitHub**: `gh pr create --base <target-branch> --title "..." --body-file tmp/pr-body-<branch>.md`
    - **GitLab**: `glab mr create --title "..." --description "$(cat tmp/pr-body-<branch>.md)"`
 
 ## GitLab Notes
