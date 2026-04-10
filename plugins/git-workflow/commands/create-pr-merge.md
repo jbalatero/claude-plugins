@@ -35,9 +35,7 @@ Read the `## Git Workflow Config` section from CLAUDE.md for configuration. If n
 
 ### 2. Push and Create PR
 
-*   Push current branch to origin with `-u` flag
-*   Create a PR targeting the configured target branch using `gh pr create`
-*   Use the branch's commit messages to draft the PR title and body
+*   Invoke the `/git-workflow:create-pr` skill to push the branch and create the PR targeting the configured target branch
 *   Report the PR URL and number
 
 ### 3. Squash Merge
