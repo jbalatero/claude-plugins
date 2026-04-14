@@ -54,6 +54,8 @@ For each conflict pause during rebase:
 2.  Read each conflicted file and examine the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
 3.  Classify each conflict:
 
+**The target branch is the authority.** When the target has removed or changed something, that removal/change wins — even if the feature branch commit originally introduced that thing. The feature branch is a guest rebasing onto the target's history.
+
 **Simple (resolve automatically):**
 
 *   Import statement ordering or additions
@@ -63,6 +65,7 @@ For each conflict pause during rebase:
 *   Auto-generated files — accept theirs and re-run generation after rebase completes
 *   One side deleted a line the other side didn't touch meaningfully
 *   Changelog or documentation additions where both sides added content (concatenate both)
+*   **Target removed a line, feature branch tries to add it back**: Accept the target's removal. Do not reintroduce it. Resolve by taking the target's side entirely.
 
 ## Very Important: Don't be afraid to ask for help
 
@@ -92,6 +95,7 @@ If the user chooses to abort at any point: `git rebase --abort` and stop.
 
 *   If lock files were conflicted, re-run package install. If files changed, stage and amend the last rebase commit
 *   If auto-generated files were conflicted, re-run the generation command. If files changed, stage and amend the last rebase commit
+*   **Net-diff audit for conflicted files**: For every file that had a conflict, run `git diff origin/<target> HEAD -- <file>`. If the only remaining diff is something the target deliberately removed (and the feature branch never meaningfully used it), the feature branch commits that produced that change should be dropped — use a non-interactive rebase to drop them. A conflict resolved "correctly" per hunk can still leave a ghost change when multiple commits together produce a net addition that the target removed.
 *   Confirm rebase completed: run `git log --oneline origin/<target>..HEAD` and show the output to the user so they can verify the expected commits landed
 
 ### 5. Force Push
