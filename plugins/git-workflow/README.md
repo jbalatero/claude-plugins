@@ -16,6 +16,7 @@ Staging-based Git workflow with conventional commits, PR creation, squash mergin
 
 | Skill | Description |
 |-------|-------------|
+| `checkout-track` | Checkout a branch tracking `origin/<branch>`, synced to origin's tip |
 | `squash-merge-pr` | Squash merge an open PR into the target branch |
 
 ## Configuration
